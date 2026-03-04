@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Furina",
+    "height": "149 cm",
+    "regional": "Fontaine",
+    "photo_id": "f",
+    "bgColor": "#1A2CA3"
+  },
+  {
+    "name": "Citlali",
+    "height": "150 cm",
+    "regional": "Natlan",
+    "photo_id": "c",
+    "bgColor": "#982598"
+  },
+  {
+    "name": "Silver Wolf",
+    "height": "138 cm",
+    "regional": "Punklorde",
+    "photo_id": "sw",
+    "bgColor": "#8100D1"
+  },
+  {
+    "name": "Sparkle",
+    "height": "136 cm",
+    "regional": "-",
+    "photo_id": "s",
+    "bgColor": "#C00707"
+  }
+]

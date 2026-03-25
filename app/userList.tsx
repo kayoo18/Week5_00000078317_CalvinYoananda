@@ -1,6 +1,7 @@
 import { Link } from "expo-router";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { Avatar, Card } from "react-native-paper";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import styles from "./(tabs)/AppStyles";
 import userData from "./(tabs)/data.json";
 
@@ -17,44 +18,46 @@ export default function UserList() {
       <View style={{ padding: 15, alignItems: "center" }}>
         
         {userData.map((user, index) => (
-          <Link 
+
+          <Animated.View 
             key={index} 
-            href={{
-              pathname: "/profile", 
-              params: { 
-                userName: user.name,
-                userHeight: user.height,
-                userRegional: user.regional,
-                userPhotoId: user.photo_id
-              } 
-            }} 
-            asChild
+            
+            entering={FadeInDown.delay(index * 200).duration(2000)}
+            style={{ width: '100%', maxWidth: 400 }}
           >
-            {/* Tambahkan maxWidth: 400 agar rapi di tengah saat dibuka di browser */}
-            <TouchableOpacity style={{ width: '100%', maxWidth: 400, marginBottom: 10 }}>
-              <Card 
-                style={[styles.card, { backgroundColor: user.bgColor }]}
-              >
-                <Card.Title
-                  title={user.name}
-                  // Tambahkan color: "white" pada titleStyle
-                  titleStyle={{ fontWeight: "bold", color: "white" }}
-                  
-                  subtitle={`Tinggi: ${user.height} \nAsal: ${user.regional}`}
-                  // Tambahkan subtitleStyle dengan color: "white"
-                  subtitleStyle={{ color: "white" }}
-                  
-                  subtitleNumberOfLines={2}
-                  left={(props) => (
-                    <Avatar.Image
-                      {...props}
-                      source={imageMapping[user.photo_id]}
-                    />
-                  )}
-                />
-              </Card>
-            </TouchableOpacity>
-          </Link>
+            <Link 
+              href={{
+                pathname: "/profile", 
+                params: { 
+                  userName: user.name,
+                  userHeight: user.height,
+                  userRegional: user.regional,
+                  userPhotoId: user.photo_id
+                } 
+              }} 
+              asChild
+            >
+              <TouchableOpacity style={{ marginBottom: 10 }}>
+                <Card 
+                  style={[styles.card, { backgroundColor: user.bgColor }]}
+                >
+                  <Card.Title
+                    title={user.name}
+                    titleStyle={{ fontWeight: "bold", color: "white" }}
+                    subtitle={`Tinggi: ${user.height} \nAsal: ${user.regional}`}
+                    subtitleStyle={{ color: "white" }}
+                    subtitleNumberOfLines={2}
+                    left={(props) => (
+                      <Avatar.Image
+                        {...props}
+                        source={imageMapping[user.photo_id]}
+                      />
+                    )}
+                  />
+                </Card>
+              </TouchableOpacity>
+            </Link>
+          </Animated.View>
         ))}
 
       </View>
